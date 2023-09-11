@@ -1,0 +1,26 @@
+kind: LDAPSyncConfig
+apiVersion: v1
+url: ldap://idm.lab.integrate.zone:389
+bindDN: uid=admin,cn=users,cn=accounts,dc=lab,dc=integrate,dc=zone
+bindPassword: ZAQ!2wsxCD
+insecure: false 
+ca: ipa.crt
+rfc2307:
+  groupsQuery:
+    baseDN: cn=groups,cn=accounts,dc=lab,dc=integrate,dc=zone
+    scope: sub
+    derefAliases: never
+    filter: (objectclass=posixgroup)
+    pageSize: 0
+  groupUIDAttribute: dn 
+  groupNameAttributes: [ cn ] 
+  groupMembershipAttributes: [ member ] 
+  usersQuery:
+    baseDN: cn=accounts,dc=lab,dc=integrate,dc=zone
+    scope: sub
+    derefAliases: never
+    pageSize: 0
+  userUIDAttribute: dn 
+  userNameAttributes: [ mail ] 
+  tolerateMemberNotFoundErrors: false
+  tolerateMemberOutOfScopeErrors: false
